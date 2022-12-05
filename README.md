@@ -1,110 +1,94 @@
-# WIN Backend Engineering Interview
+# backend Backend
 
-## Scenario
+## Project Structure
 
-Your mission is to build a portion of an order management system. You need to provide a service that allows other systems and teams to obtain information about orders.
+-----
+![Optional Text](./documents/ProjectStructure.svg)
 
-## Deliverables
+### Requirements
 
-There are two deliverables for this project:
+-----
 
-1. An internal web service API for managing orders
-2. A test suite to validate the web service and library work as expected
+- npm `8.3.2`
+- node `16.x`
+- npm
 
-### General
+### Setup
 
-- Please use either **JavaScript/TypeScript or Python**.
-- You may use any framework, such as a web framework or test framework, to help you complete the project.
-- You may store the data for this system in any database you choose, however we've included a Docker image loaded with Postgres in this repo.
-- You may model the data any way you'd like, including adding data beyond the samples provided.
+-----
 
-### Web Service
-
-- Your service should implement several endpoints that accept POST, GET, PUT and DELETE requests. Also 1 endpoint that accepts GET all orders.
-- Your service should handle edge cases appropriately and return appropriate HTTP status codes.
-- Your service should return an error on creation/updating an order within 3 hrs of a pre-existing order.
-- Your service should return JSON results.
-- Your service should have at least one test.
-
-## Sample Data
-
-Below is some sample data you can use to populate your database. Feel free to extend or modify this data for your project:
-
-Service Records
-
-```json
-[
-  {
-    "id": 123,
-    "name": "Inspection"
-  },
-  {
-    "id": 789,
-    "name": "Testing"
-  },
-  {
-    "id": 456,
-    "name": "Analysis"
-  }
-]
+```bash
+npm install
 ```
 
-Orders
+#### Run
 
-```json
-[
-  {
-    "id": "223",
-    "datetime": "2022-11-01T11:11:11.111Z",
-    "totalfee": 100,
-    "services": [
-        {
-        "id": "123",
-        }
-    ]
-  },
-  {
-    "id": "224",
-    "datetime": "2022-11-01T11:11:11.111Z",
-    "totalfee": 100,
-    "services": [
-        {
-        "id": "789",
-        }
-    ]
-  },
-  {
-    "id": "225",
-    "datetime": "2022-11-01T11:11:11.111Z",
-    "totalfee": 100,
-    "services": [
-        {
-        "id": "456",
-        }
-    ]
-  }
-]
+-----
+You can run the development server by typing.
+
+```bash
+npm run start
 ```
 
-## Duration
+### Commands
 
-Up to 2 hours.
+-----
 
-## Submission
-1.  Clone this repo
-2.  Create Web Services and tests
-3.  Submit a Pull Request (PR)
-4.  In the PR, include a README that includes the following:
-      - A description of your solution at a high-level, including language used, framework used, roughly how it works, etc.
-      - What trade-offs you made
-      - Any assumptions you made that affected your solution
-      - What you would change if you built this for production
-      - Brief instructions on how to setup the environment to run your project
-      - What parts of the spec were completed, how much time you spent, and any particular problems you ran into
+- Formating code
 
-## Evaluation
-We are looking for: 
-1. Communication
-2. Solution Design
-3. Completeness
-4. Code clarity / readability
+```bash
+npm run format
+```
+
+- Run testcases
+
+```bash
+npm run test
+```
+
+
+### Database access
+
+-----
+Ensure you have access to a SQL database when running locally.
+
+The database host, port, credentials, etc are configured in the `src/config/Config.ts` file.
+
+#### Database migrations
+
+-----
+The project is using [TypeORM](https://github.com/typeorm/typeorm) to generate automatic migration scripts based on the model changes.
+
+To generate a migration, please use:
+
+```bash
+npm run typeorm -- migration:generate src/database/migrations/migration-name
+```
+
+**And then, import the migration to the following file: `/src/database/instances/DatabaseConnection`**
+
+To migrate the changes you can use:
+
+```bash
+npm run typeorm -- migration:run
+```
+
+To migrate revert you can use:
+
+```bash
+npm run typeorm -- migration:revert
+```
+
+_You can find more information about how migrations work on TypeORM here: [https://github.com/typeorm/typeorm/blob/master/docs/migrations.md](https://github.com/typeorm/typeorm/blob/master/docs/migrations.md)_
+
+### Commit rules
+
+-----
+Rules - <https://dev.to/intrepid_ishan/git-commit-message-convention-that-you-can-follow-1709>
+
+commitlint - <https://www.npmjs.com/package/@commitlint/config-conventional>
+
+### API docs
+
+-----
+Rules - <https://apidocjs.com/#param-api-sample-request>
