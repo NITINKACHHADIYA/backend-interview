@@ -26,7 +26,7 @@ export class AuthenticationService implements IAuthenticationService {
 
     // TODO: Validate token here
     this.logger.debug('request log', tokens);
-    this.logger.debug('response log', response);
+    this.logger.debug('response log', response.getHeaders);
   }
 
   private getTokensFromRequest(request: express.Request): {

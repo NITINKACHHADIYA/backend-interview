@@ -21,14 +21,17 @@ import { ILocalizeService } from '../instances/others/LocalizeService.interface'
 import { LocalizeService } from '../instances/others/LocalizeService';
 
 // Datastores
-import { ServiceDatastore } from '../database/datastores/ServiceDatastore';
-import { IServiceDatastore } from '../database/datastores/ServiceDatastore.interface';
+import { OrderDatastore } from '../database/datastores/OrderDatastore';
+import { IOrderDatastore } from '../database/datastores/OrderDatastore.interface';
+import { IDatabaseConnection } from '../database/instances/DatabaseConnection.interface';
+import { ConnectionPool } from '../database/instances/ConnectionPool';
 
 // Repositories
 import { OrderManagementRepository } from '../repositories/OrderManagementRepository';
 import { IOrderManagementRepository } from '../repositories/OrderManagementRepository.interface';
 
 // Middlewares
+import { RequestOrderMiddleware } from '../server/controllers/orderManagementController/RequestOrderMiddleware';
 import { AuthMiddleware } from '../server/middlewares/AuthMiddleware';
 import { ErrorMiddleware } from '../server/middlewares/ErrorMiddleware';
 import { LoggerMiddleware } from '../server/middlewares/LoggerMiddleware';
@@ -36,6 +39,7 @@ import { LocalizeMiddleware } from '../server/middlewares/LocalizeMiddleware';
 
 // Controllers
 import { OrderManagementController } from '../server/controllers/orderManagementController/OrderManagementController';
+import { UpdateOrderMiddleware } from '../server/controllers/orderManagementController/UpdateOrderMiddleware';
 import { IRouterController } from '../server/controllers/IRouterController';
 
 // Server
@@ -89,7 +93,8 @@ export function initialiseOtherServices(container: Container): Container {
  * @returns {Container}
  */
 export function initialiseDatastores(inversifyContainer: Container): Container {
-  inversifyContainer.bind<IServiceDatastore>(INVERSIFY_TYPES.ServiceDatastore).to(ServiceDatastore);
+  inversifyContainer.bind<IOrderDatastore>(INVERSIFY_TYPES.OrderDatastore).to(OrderDatastore);
+  inversifyContainer.bind<IDatabaseConnection>(INVERSIFY_TYPES.Database).to(ConnectionPool).inSingletonScope();
 
   return inversifyContainer;
 }
@@ -111,6 +116,8 @@ export function initialiseRepositories(container: Container): Container {
  * @returns {Container}
  */
 export function initialiseMiddlewares(container: Container): Container {
+  container.bind(INVERSIFY_TYPES.RequestOrderMiddleware).to(RequestOrderMiddleware);
+  container.bind(INVERSIFY_TYPES.UpdateOrderMiddleware).to(UpdateOrderMiddleware);
   container.bind(INVERSIFY_TYPES.AuthMiddleware).to(AuthMiddleware);
   container.bind(INVERSIFY_TYPES.ErrorMiddleware).to(ErrorMiddleware);
   container.bind(INVERSIFY_TYPES.LoggerMiddleware).to(LoggerMiddleware);

@@ -1,6 +1,5 @@
 import * as express from 'express';
 import { inject, injectable } from 'inversify';
-import { ForbiddenException } from '../../common/exceptions/ForbiddenException';
 import { ILogger } from '../../common/logging/Logger.interface';
 import { INVERSIFY_TYPES } from '../../Inversify/InversifyTypes';
 import { IAuditLogger } from './AuditLogger.interface';
@@ -21,15 +20,13 @@ export class StandardAuditLogger implements IAuditLogger {
     // The user should be authenticated so that their can be recorded with any audit logs
     this.logger.info('user is unauthenticated');
     if (userIsRequired) {
-      throw new ForbiddenException();
+      // throw new ForbiddenException();
     }
   }
 
   public async logResponse(request: express.Request, response: express.Response): Promise<void> {
     // The user should be authenticated so that their can be recorded with any audit logs
 
-    this.logger.debug('req:', request);
-    this.logger.debug('res:', request);
     // Log the request
     const log = {
       category: request.path,

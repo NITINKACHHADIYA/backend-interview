@@ -18,14 +18,14 @@ export const INVERSIFY_TYPES = {
   DbName: Symbol.for('DB_NAME'),
 
   // Datastores
-  ServiceDatastore: Symbol.for('ServiceDatastore'),
+  OrderDatastore: Symbol.for('OrderDatastore'),
 
   // Repositories
   OrderManagementRepository: Symbol.for('OrderManagementRepository'),
 
   // Middlewares
-  UpdateUserMiddleware: Symbol.for('UpdateUserMiddleware'),
-  RegisterUserMiddleware: Symbol.for('RegisterUserMiddleware'),
+  RequestOrderMiddleware: Symbol.for('RequestOrderMiddleware'),
+  UpdateOrderMiddleware: Symbol.for('UpdateOrderMiddleware'),
   AuthMiddleware: Symbol.for('AuthMiddleware'),
   ErrorMiddleware: Symbol.for('ErrorMiddleware'),
   LoggerMiddleware: Symbol.for('LoggerMiddleware'),
@@ -37,5 +37,5 @@ export const INVERSIFY_TYPES = {
   Controller: Symbol.for('Controller'),
 
   // Server
-  Server: Symbol.for('Server'),
+  Server: Symbol.for('Server')
 };

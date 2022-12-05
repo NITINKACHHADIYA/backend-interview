@@ -7,9 +7,6 @@
     "RequestBodyValidationFailed":"Request cannot be processed at this time. Please try later.",
     "CannotConnectToDatabaseInvalidCred":"Access denied for the user. Please try again.",
     "CannotConnectToDatabaseConnectionAddress":"An error occurred. Please check your internet connection or try again later.",
-    "UserDetailsNotFound":"User details not found. Please try again.",
-    "OrganisationDetailsNotFound": "Company details not found. Please try again.",
     "FailedToSendYourRequest": "Failed to send the email. Please try again.",
-    "AlreadyRegister":"User already register",
     "NotFound": "Detail not found. Please try again."
 }

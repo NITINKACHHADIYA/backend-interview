@@ -1,6 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as cookieParser from 'cookie-parser';
-import * as csrf from 'csurf';
+// import * as csrf from 'csurf';
 import * as cors from 'cors';
 import * as express from 'express';
 import * as fs from 'fs';
@@ -109,7 +109,7 @@ export class Server {
       )
     );
     this.app.use(unless(['/images'], this.loggerMiddleware.handler()));
-    this.app.use(unless([], csrf({ cookie: true })));
+    // this.app.use(unless([], csrf({ cookie: true })));
     const limiter = rateLimit({
       windowMs: 1 * 60 * 1000, // 1 minute
       max: 1000, // limit each IP to 1000 requests per windowMs

@@ -1,5 +1,25 @@
 # backend Backend
 
+
+## asumption
+1. authentication is working file
+2. only order related stuff need to integrated here
+3. consider other microservices use this service
+
+## Points
+1. order management webservices is created(get, update, delete, create, get multiple order)
+2. Added description for project setup structure of project
+3. Used mySQL database with Typescript and TypeORM
+4. Used Joi library for reqest validation
+5. No authentication added yet, it will required more efforts
+6. Only consider user can pleace order, and update, get details
+7. Added testcase(pedning) on *.test.ts file
+8. API documentation added on *.doc.ts file, you can generate doc using ```npm run doc``` command. and it will appear in document/api folder
+9. Setup is added in this file 
+10. deployment scripting is pending for production
+11. total time spent around 4-5 hrs
+
+
 ## Project Structure
 
 -----

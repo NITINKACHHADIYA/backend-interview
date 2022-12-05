@@ -139,7 +139,7 @@ export class DatabaseConnection implements IDatabaseConnection {
       username: AppConfig.ormconfig.username,
       password: AppConfig.ormconfig.password,
       database: dbName,
-      entities: [],
+      entities: ["src/database/entities/*ts"],
       synchronize: false,
       logging: AppConfig.ormconfig.logging,
     });

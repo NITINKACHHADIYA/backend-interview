@@ -9,7 +9,7 @@ import { expressCb } from './ExpressCb';
 export class LoggerMiddleware {
   constructor(@inject(INVERSIFY_TYPES.Logger) private logger: ILogger) {
     morgan.token('remote-user', (req: express.Request) => {
-      this.logger.debug('unknown', req);
+      this.logger.debug('unknown', req.body);
       return 'unknownUser';
     });
   }
